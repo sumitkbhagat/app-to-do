@@ -16,7 +16,7 @@ pipeline {
                withSonarQubeEnv('sonar-scanner') {
                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=app-ci-cd \
                    -Dsonar.java.binaries=. \
-                   -Dsonar.host.url=http://13.234.232.137:9000 \
+                   -Dsonar.host.url=http://65.0.185.65:9000 \
                    -Dsonar.projectKey=app-ci-cd '''
                   }     
              }
