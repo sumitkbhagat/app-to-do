@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
    
@@ -63,7 +64,10 @@ pipeline {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'e36c3685-390b-4690-9421-35a46a52db35') {
-                    sh "docker run -d --name app-to-do -p 4000:4000 sumitkumarbhagat/app-to-do:latest "
+                        sh " docker stop app-to-do " 
+                        sh " docker rm app-to-do " 
+                        sh " docker rmi app-to-do:latest " 
+                        sh "docker run -d --name app-to-do -p 4000:4000 sumitkumarbhagat/app-to-do:latest "
                  }
                }
             }
