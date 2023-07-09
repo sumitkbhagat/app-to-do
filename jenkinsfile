@@ -19,7 +19,7 @@
                    -Dsonar.host.url=http://65.0.130.21:9000 \
                    -Dsonar.projectKey=app-ci-cd '''
                   }     
-          }
-
+             }
+         }
      }
 }
