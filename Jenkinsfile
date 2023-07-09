@@ -34,37 +34,39 @@ pipeline {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'e36c3685-390b-4690-9421-35a46a52db35') {
-                    sh "docker build -t  todoapp:latest -f docker/Dockerfile . "
-                    sh "docker tag todoapp:latest username/todoapp:latest "
+                    sh "docker build -t  app-to-do:latest -f backend/Dockerfile . "
+                    sh "docker tag app-to-do:latest sumitkumarbhagat/app-to-do:latest "
+                    
+                   }
                  }
                }
+            
             }
-        }
-
-        stage('Docker Push') {
+          
+           stage('Docker Push') {
             steps {
                script{
                    withDockerRegistry(credentialsId: 'e36c3685-390b-4690-9421-35a46a52db35') {
-                    sh "docker push  username/todoapp:latest "
+                    sh "docker push  sumitkumarbhagat/app-to-do:latest "
                  }
                }
             }
         }
-        stage('trivy') {
-            steps {
-               sh " trivy username/todoapp:latest"
-            }
-        }
-		stage('Deploy to Docker') {
-            steps {
-               script{
-                   withDockerRegistry(credentialsId: 'e36c3685-390b-4690-9421-35a46a52db35') {
-                    sh "docker run -d --name to-do-app -p 4000:4000 username/todoapp:latest "
-                 }
-               }
-            }
-        }
-
-    }
-}
         
+        stage('trivy docker scan') {
+            steps {
+               sh " trivy image sumitkumarbhagat/app-to-do:latest "
+            }
+        }
+        
+        stage('Deploy to Docker') {
+            steps {
+               script{
+                   withDockerRegistry(credentialsId: 'e36c3685-390b-4690-9421-35a46a52db35') {
+                    sh "docker run -d --name app-to-do -p 4000:4000 sumitkumarbhagat/app-to-do:latest "
+                 }
+               }
+            }
+        }
+     }
+}
