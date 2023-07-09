@@ -27,10 +27,8 @@ pipeline {
             steps {
                     dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
                     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        
-                
-             }
+                    }
+              }
          }
      
     }
