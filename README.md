@@ -1,1 +1,1 @@
-this is devops project
+This is app-to-do Application
