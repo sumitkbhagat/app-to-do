@@ -2,7 +2,7 @@ pipeline {
     agent any
     
    environment{
-SCANNER_HOME= tool 'sonar-scanner'
+    SCANNER_HOME= tool 'sonar-scanner'
 }
   stages {
         stage('git-checkout') {
@@ -20,7 +20,7 @@ SCANNER_HOME= tool 'sonar-scanner'
                }
             }
          }
-  }   
-        }
+    }   
+ 
      
 
