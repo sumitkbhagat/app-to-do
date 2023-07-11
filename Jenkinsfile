@@ -7,7 +7,12 @@ pipeline {
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/sumitkbhagat/app-to-do.git'
             }
          }
-            
+      stage('unit test') {
+            steps {
+               sh "mvn  test"
+            }
+        }
+  }   
         }
      
 
